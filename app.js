@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = process.env.APP_PORT ?? 5036;
+
 app.use(express.json());
 
 const welcome = (req, res) => {
@@ -13,17 +14,21 @@ const welcome = (req, res) => {
 app.get("/", welcome);
 
 const movieHandlers = require("./movieHandlers");
+const { hashPassword } = require("./auth.js");
 
 app.get("/api/movies", movieHandlers.getMovies);
 app.get("/api/movies/:id", movieHandlers.getMovieById);
-app.get("/api/users", movieHandlers.getUsers);
-app.get("/api/users/:id", movieHandlers.getUsersById);
 app.post("/api/movies", movieHandlers.postMovie);
-app.post("/api/users", movieHandlers.postUsers);
 app.put("/api/movies/:id", movieHandlers.updateMovie);
-app.put("/api/users/:id", movieHandlers.updateUsers);
 app.delete("/api/movies/:id", movieHandlers.deleteMovie);
-app.delete("/api/users/:id", movieHandlers.deleteUsers);
+
+const userHandlers = require("./userHandlers");
+
+app.get("/api/users", userHandlers.getUsers);
+app.get("/api/users/:id", userHandlers.getUsersById);
+app.post("/api/users", hashPassword, userHandlers.postUsers);
+app.put("/api/users/:id", hashPassword, userHandlers.updateUsers);
+app.delete("/api/users/:id", userHandlers.deleteUsers);
 
 app.listen(port, (err) => {
   if (err) {
