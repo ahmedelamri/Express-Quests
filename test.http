@@ -1,8 +1,33 @@
-  https://localhost:5023/api/movies/?max_duration=0
 
+GET  http://localhost:5023/api/movies
+content-type: application/json
+
+###
+GET  http://localhost:5023/api/users
+content-type: application/json
 
 ###
 
-http://localhost:5023/api/users?city=Paris&language=English
+GET  http://localhost:5023/api/users/1
+content-type: application/json
+
+###
+
+POST http://localhost:5023/api/users
+content-type: application/json
+
+{  
+  "firstname": "hamid",
+  "lastname": "inerzaf",
+  "email": "hamid@example.com",
+  "city": "maroco",
+  "language": "Chleuh",
+  "password": "kirikou78130"
+}
  
+
+
+
+
+
 

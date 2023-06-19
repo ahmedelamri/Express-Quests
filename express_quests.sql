@@ -76,7 +76,7 @@ VALUES
     'john.doe@example.com',
     'Paris',
     'English',
-    "$argon2id$v=19$m=16,t=2,p=1$emVmZXpmemZlemVmZWR6ZXplZg$rqZkhxu5YbqCGHPNrjJZpQ"
+    "Ahmed Reims"
   ),
   (
     'Valeriy',
